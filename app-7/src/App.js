@@ -2,20 +2,48 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+import Todo from './components/Todo';
+import List from './components/List';
+import NewTask from './components/NewTask';
+
+
 class App extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+    tasks: [],
+    }
+    this.upDateTasks = this.upDateTasks.bind(this);
+  }
+
+  upDateTasks(input){
+    let tasks = [...this.state.tasks, input]
+    this.setState({ tasks })
+  }
+
+  
+
+
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <h1>My to-do list:</h1>
+        <NewTask 
+         upDateTasks={this.upDateTasks}
+        />
+        <List 
+          tasks={this.state.tasks}
+        />
+
+      
       </div>
     );
   }
 }
 
 export default App;
+
+
